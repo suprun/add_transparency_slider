@@ -58,6 +58,13 @@ class AddTransparencySliderPlugin:
         if self.iface:
             self.view = self.iface.layerTreeView()
             if self.view:
+                # Disconnect first to avoid duplicate connections
+                try:
+                    self.view.contextMenuAboutToShow.disconnect(
+                        self.populate_context_menu
+                    )
+                except (TypeError, RuntimeError):
+                    pass
                 self.view.contextMenuAboutToShow.connect(
                     self.populate_context_menu
                 )
@@ -101,20 +108,25 @@ class AddTransparencySliderPlugin:
         return QIcon()
 
     def get_target_layers(self):
-        """Get list of target layers from layer tree selection or node."""
+        """Get list of valid target layers from layer tree selection."""
         if not self.view:
             return []
 
-        selected_layers = self.view.selectedLayers()
-        if not selected_layers:
-            current_node = self.view.currentNode()
-            if (
-                isinstance(current_node, QgsLayerTreeLayer)
-                and current_node.layer()
-            ):
-                selected_layers = [current_node.layer()]
+        current_node = self.view.currentNode()
+        # Only show action when a layer node is focused/selected
+        if not isinstance(current_node, QgsLayerTreeLayer):
+            return []
 
-        return selected_layers
+        selected_layers = self.view.selectedLayers()
+        if not selected_layers and current_node.layer():
+            selected_layers = [current_node.layer()]
+
+        # Filter only existing and valid map layers
+        return [
+            layer
+            for layer in selected_layers
+            if layer is not None and layer.isValid()
+        ]
 
     def get_embedded_widgets(self, layer):
         """Get list of embedded widget IDs configured on the layer."""
