@@ -181,8 +181,74 @@ class AddTransparencySliderPlugin:
         """Check if layer already has at least one transparency slider."""
         return "transparency" in self.get_embedded_widgets(layer)
 
+    def is_show_labels_action(self, action):
+        """Check if action is the standard 'Show Labels' layer action."""
+        if not action or action.isSeparator():
+            return False
+
+        clean_text = action.text().replace("&", "").strip().lower()
+        if clean_text in ("show labels", "show label"):
+            return True
+
+        # Check translations across standard QGIS contexts
+        contexts = (
+            "QgsAppLayerTreeViewMenuProvider",
+            "QgisApp",
+            "QgsLayerTreeViewDefaultActions",
+        )
+        for ctx in contexts:
+            translated = (
+                QCoreApplication.translate(ctx, "Show Labels")
+                .replace("&", "")
+                .strip()
+                .lower()
+            )
+            if translated and clean_text == translated:
+                return True
+
+        return False
+
+    def find_insertion_index(self, actions):
+        """Find the optimal position in context menu for transparency slider.
+
+        Places action immediately after 'Show Labels' (vector layers),
+        or before the first separator (raster/mesh layers).
+        """
+        # 1. Insert immediately after 'Show Labels' if present
+        for idx, action in enumerate(actions):
+            if self.is_show_labels_action(action):
+                return idx + 1
+
+        # 2. Otherwise insert at the end of View block (before 1st separator)
+        for idx, action in enumerate(actions):
+            if action.isSeparator():
+                return idx
+
+        # 3. Fallback: before Rename Layer if found
+        contexts = (
+            "QgsAppLayerTreeViewMenuProvider",
+            "QgisApp",
+            "QgsLayerTreeViewDefaultActions",
+        )
+        for idx, action in enumerate(actions):
+            clean_text = action.text().replace("&", "").strip().lower()
+            if "rename" in clean_text:
+                return idx
+            for ctx in contexts:
+                translated = (
+                    QCoreApplication.translate(ctx, "Rename Layer")
+                    .replace("&", "")
+                    .strip()
+                    .lower()
+                )
+                if translated and clean_text == translated:
+                    return idx
+
+        # 4. Final fallback: position 5 or end of menu
+        return min(5, len(actions))
+
     def populate_context_menu(self, menu):
-        """Inject conditional Add/Remove action at position 6."""
+        """Inject conditional Add/Remove action at optimal position."""
         if not menu or not self.view:
             return
 
@@ -210,9 +276,10 @@ class AddTransparencySliderPlugin:
         action.triggered.connect(handler)
 
         actions = menu.actions()
-        # 6th position is 0-based index 5
-        if len(actions) >= 5:
-            menu.insertAction(actions[5], action)
+        insert_idx = self.find_insertion_index(actions)
+
+        if insert_idx < len(actions):
+            menu.insertAction(actions[insert_idx], action)
         else:
             menu.addAction(action)
 
