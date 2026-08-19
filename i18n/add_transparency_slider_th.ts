@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>เพิ่มแถบเลื่อนความโปร่งใส</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>ลบแถบเลื่อนความโปร่งใส</translation>
+    </message>
 </context>
 </TS>

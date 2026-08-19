@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>הוספת מחוון שקיפות</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>הסרת מחוון שקיפות</translation>
+    </message>
 </context>
 </TS>

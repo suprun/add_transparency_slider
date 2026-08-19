@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>Тунгалаг байдлын гулсагч нэмэх</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>Тунгалаг байдлын гулсагчийг устгах</translation>
+    </message>
 </context>
 </TS>

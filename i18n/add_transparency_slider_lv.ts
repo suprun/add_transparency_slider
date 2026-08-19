@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>Pievienot caurspīdīguma slīdni</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>Noņemt caurspīdīguma slīdni</translation>
+    </message>
 </context>
 </TS>

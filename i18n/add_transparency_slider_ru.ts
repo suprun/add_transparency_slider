@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>Добавить ползунок прозрачности</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>Удалить ползунок прозрачности</translation>
+    </message>
 </context>
 </TS>

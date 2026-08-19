@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>Додај клизач за провидност</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>Уклони клизач за провидност</translation>
+    </message>
 </context>
 </TS>

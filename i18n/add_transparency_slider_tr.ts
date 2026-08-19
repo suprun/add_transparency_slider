@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>Saydamlık kaydırıcısı ekle</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>Saydamlık kaydırıcısını kaldır</translation>
+    </message>
 </context>
 </TS>

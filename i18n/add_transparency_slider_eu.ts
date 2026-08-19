@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>Gehitu gardentasunaren graduatzailea</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>Kendu gardentasunaren graduatzailea</translation>
+    </message>
 </context>
 </TS>

@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>გამჭვირვალობის სლაიდერის დამატება</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>გამჭვირვალობის სლაიდერის წაშლა</translation>
+    </message>
 </context>
 </TS>

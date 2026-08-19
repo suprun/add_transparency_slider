@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>新增透明度滑桿</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>移除透明度滑桿</translation>
+    </message>
 </context>
 </TS>

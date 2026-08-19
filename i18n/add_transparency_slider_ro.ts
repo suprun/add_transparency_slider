@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>Adăugare glisor transparență</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>Eliminare glisor transparență</translation>
+    </message>
 </context>
 </TS>

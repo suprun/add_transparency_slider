@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>إضافة شريط تمرير الشفافية</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>إزالة شريط تمرير الشفافية</translation>
+    </message>
 </context>
 </TS>

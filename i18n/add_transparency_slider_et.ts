@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>Lisa läbipaistvuse liugur</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>Eemalda läbipaistvuse liugur</translation>
+    </message>
 </context>
 </TS>

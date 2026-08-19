@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>Ongeza kitelezi cha uwazi</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>Ondoa kitelezi cha uwazi</translation>
+    </message>
 </context>
 </TS>

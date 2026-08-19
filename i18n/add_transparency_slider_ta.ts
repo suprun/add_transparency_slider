@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>வெளிப்படைத்தன்மை ஸ்லைடரைச் சேர்</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>வெளிப்படைத்தன்மை ஸ்லைடரை அகற்று</translation>
+    </message>
 </context>
 </TS>

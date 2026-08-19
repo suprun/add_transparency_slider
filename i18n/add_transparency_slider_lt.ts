@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>Pridėti permatomumo slankiklį</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>Pašalinti permatomumo slankiklį</translation>
+    </message>
 </context>
 </TS>

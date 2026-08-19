@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>Afegeix un control lliscant de transparència</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>Elimina el control lliscant de transparència</translation>
+    </message>
 </context>
 </TS>

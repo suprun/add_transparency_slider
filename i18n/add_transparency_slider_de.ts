@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>Transparenzschieberegler hinzufügen</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>Transparenzschieberegler entfernen</translation>
+    </message>
 </context>
 </TS>

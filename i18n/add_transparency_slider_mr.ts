@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>पारदर्शकता स्लाइडर जोडा</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>पारदर्शकता स्लाइडर काढा</translation>
+    </message>
 </context>
 </TS>

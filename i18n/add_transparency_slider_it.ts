@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>Aggiungi cursore trasparenza</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>Rimuovi cursore trasparenza</translation>
+    </message>
 </context>
 </TS>

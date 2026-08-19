@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>Engadir control deslizante de transparencia</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>Eliminar control deslizante de transparencia</translation>
+    </message>
 </context>
 </TS>

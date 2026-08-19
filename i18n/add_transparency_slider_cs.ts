@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>Přidat posuvník průhlednosti</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>Odebrat posuvník průhlednosti</translation>
+    </message>
 </context>
 </TS>

@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>Dodaj drsnik za prosojnost</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>Odstrani drsnik za prosojnost</translation>
+    </message>
 </context>
 </TS>

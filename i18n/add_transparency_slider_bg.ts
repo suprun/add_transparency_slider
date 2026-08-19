@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>Добавяне на плъзгач за прозрачност</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>Премахване на плъзгач за прозрачност</translation>
+    </message>
 </context>
 </TS>

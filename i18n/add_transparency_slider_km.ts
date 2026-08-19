@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>បន្ថែមគ្រាប់រំកិលតម្លាភាព</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>លុបគ្រាប់រំកិលតម្លាភាព</translation>
+    </message>
 </context>
 </TS>

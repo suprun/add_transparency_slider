@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>Προσθήκη ρυθμιστικού διαφάνειας</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>Αφαίρεση ρυθμιστικού διαφάνειας</translation>
+    </message>
 </context>
 </TS>

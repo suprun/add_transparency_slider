@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>పారదర్శకత స్లైడర్‌ను జోడించండి</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>పారదర్శకత స్లైడర్‌ను తీసివేయండి</translation>
+    </message>
 </context>
 </TS>

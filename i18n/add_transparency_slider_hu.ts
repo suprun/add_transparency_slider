@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>Átlátszóság csúszka hozzáadása</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>Átlátszóság csúszka eltávolítása</translation>
+    </message>
 </context>
 </TS>

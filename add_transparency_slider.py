@@ -2,8 +2,8 @@
 """
 Add Transparency Slider - QGIS Plugin.
 
-Adds an 'Add transparency slider' item to the layer tree context menu
-to display the embedded transparency slider under layers.
+Adds an 'Add / Remove transparency slider' item to the layer tree context menu
+to manage embedded transparency sliders under layers.
 """
 
 import os
@@ -100,61 +100,120 @@ class AddTransparencySliderPlugin:
 
         return QIcon()
 
-    def populate_context_menu(self, menu):
-        """Inject 'Add transparency slider' action at position 6."""
-        if not menu or not self.view:
-            return
+    def get_target_layers(self):
+        """Get list of target layers from layer tree selection or node."""
+        if not self.view:
+            return []
 
-        current_node = self.view.currentNode()
         selected_layers = self.view.selectedLayers()
-
-        if isinstance(current_node, QgsLayerTreeLayer) or selected_layers:
-            action = QAction(
-                self.get_transparency_icon(),
-                self.tr("Add transparency slider"),
-                menu,
-            )
-            action.triggered.connect(self.add_transparency_slider)
-
-            actions = menu.actions()
-            # 6th position is 0-based index 5
-            if len(actions) >= 5:
-                menu.insertAction(actions[5], action)
-            else:
-                menu.addAction(action)
-
-    def add_transparency_slider_to_layer(self, layer):
-        """Add transparency embedded widget to specified layer."""
-        if not layer or not layer.isValid():
-            return
-
-        try:
-            count = int(layer.customProperty("embeddedWidgets/count", 0))
-        except (ValueError, TypeError):
-            count = 0
-
-        # Append transparency widget
-        layer.setCustomProperty(f"embeddedWidgets/{count}/id", "transparency")
-        layer.setCustomProperty("embeddedWidgets/count", count + 1)
-
-        # Refresh layer tree legend and trigger repaint
-        if self.iface and self.iface.layerTreeView():
-            self.iface.layerTreeView().refreshLayerSymbology(layer.id())
-        layer.triggerRepaint()
-
-    def add_transparency_slider(self):
-        """Handler for 'Add transparency slider' action."""
-        if not self.iface or not self.iface.layerTreeView():
-            return
-
-        selected_layers = self.iface.layerTreeView().selectedLayers()
         if not selected_layers:
-            current_node = self.iface.layerTreeView().currentNode()
+            current_node = self.view.currentNode()
             if (
                 isinstance(current_node, QgsLayerTreeLayer)
                 and current_node.layer()
             ):
                 selected_layers = [current_node.layer()]
 
-        for layer in selected_layers:
+        return selected_layers
+
+    def get_embedded_widgets(self, layer):
+        """Get list of embedded widget IDs configured on the layer."""
+        if not layer or not layer.isValid():
+            return []
+
+        try:
+            count = int(layer.customProperty("embeddedWidgets/count", 0))
+        except (ValueError, TypeError):
+            count = 0
+
+        widgets = []
+        for i in range(count):
+            w_id = layer.customProperty(f"embeddedWidgets/{i}/id")
+            if w_id is not None:
+                widgets.append(str(w_id))
+        return widgets
+
+    def set_embedded_widgets(self, layer, widgets):
+        """Set list of embedded widget IDs and refresh layer tree legend."""
+        if not layer or not layer.isValid():
+            return
+
+        try:
+            old_count = int(layer.customProperty("embeddedWidgets/count", 0))
+        except (ValueError, TypeError):
+            old_count = 0
+
+        layer.setCustomProperty("embeddedWidgets/count", len(widgets))
+        for i, w_id in enumerate(widgets):
+            layer.setCustomProperty(f"embeddedWidgets/{i}/id", w_id)
+
+        # Remove stale widget property keys
+        for i in range(len(widgets), old_count):
+            layer.removeCustomProperty(f"embeddedWidgets/{i}/id")
+
+        if self.iface and self.iface.layerTreeView():
+            self.iface.layerTreeView().refreshLayerSymbology(layer.id())
+        layer.triggerRepaint()
+
+    def layer_has_transparency_slider(self, layer):
+        """Check if layer already has at least one transparency slider."""
+        return "transparency" in self.get_embedded_widgets(layer)
+
+    def populate_context_menu(self, menu):
+        """Inject conditional Add/Remove action at position 6."""
+        if not menu or not self.view:
+            return
+
+        target_layers = self.get_target_layers()
+        if not target_layers:
+            return
+
+        # If any target layer has a slider, offer Remove; otherwise Add
+        has_slider = any(
+            self.layer_has_transparency_slider(layer)
+            for layer in target_layers
+        )
+
+        if has_slider:
+            action_text = self.tr("Remove transparency slider")
+            handler = self.remove_transparency_slider
+        else:
+            action_text = self.tr("Add transparency slider")
+            handler = self.add_transparency_slider
+
+        action = QAction(self.get_transparency_icon(), action_text, menu)
+        action.triggered.connect(handler)
+
+        actions = menu.actions()
+        # 6th position is 0-based index 5
+        if len(actions) >= 5:
+            menu.insertAction(actions[5], action)
+        else:
+            menu.addAction(action)
+
+    def add_transparency_slider_to_layer(self, layer):
+        """Add one transparency embedded widget to specified layer."""
+        widgets = self.get_embedded_widgets(layer)
+        widgets.append("transparency")
+        self.set_embedded_widgets(layer, widgets)
+
+    def remove_transparency_slider_from_layer(self, layer):
+        """Remove one transparency slider from specified layer."""
+        widgets = self.get_embedded_widgets(layer)
+        if "transparency" in widgets:
+            # Remove the last added transparency widget
+            for i in range(len(widgets) - 1, -1, -1):
+                if widgets[i] == "transparency":
+                    widgets.pop(i)
+                    break
+            self.set_embedded_widgets(layer, widgets)
+
+    def add_transparency_slider(self):
+        """Handler for 'Add transparency slider' action."""
+        for layer in self.get_target_layers():
             self.add_transparency_slider_to_layer(layer)
+
+    def remove_transparency_slider(self):
+        """Handler for 'Remove transparency slider' action."""
+        for layer in self.get_target_layers():
+            self.remove_transparency_slider_from_layer(layer)

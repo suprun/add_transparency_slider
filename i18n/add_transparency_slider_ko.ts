@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>투명도 슬라이더 추가</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>투명도 슬라이더 제거</translation>
+    </message>
 </context>
 </TS>

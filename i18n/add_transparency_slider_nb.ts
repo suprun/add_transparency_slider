@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>Legg til glidebryter for gjennomsiktighet</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>Fjern glidebryter for gjennomsiktighet</translation>
+    </message>
 </context>
 </TS>

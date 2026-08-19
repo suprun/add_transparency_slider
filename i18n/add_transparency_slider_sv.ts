@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>Lägg till skjutreglage för genomskinlighet</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>Ta bort skjutreglage för genomskinlighet</translation>
+    </message>
 </context>
 </TS>

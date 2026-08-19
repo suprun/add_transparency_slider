@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>Dodaj klizač za prozirnost</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>Ukloni klizač za prozirnost</translation>
+    </message>
 </context>
 </TS>

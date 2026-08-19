@@ -8,5 +8,10 @@
         <source>Add transparency slider</source>
         <translation>Lisää läpinäkyvyysliukusäädin</translation>
     </message>
+    <message>
+        <location filename="../add_transparency_slider.py"/>
+        <source>Remove transparency slider</source>
+        <translation>Poista läpinäkyvyysliukusäädin</translation>
+    </message>
 </context>
 </TS>
