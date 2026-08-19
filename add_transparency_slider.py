@@ -83,24 +83,34 @@ class AddTransparencySliderPlugin:
             QCoreApplication.removeTranslator(self.translator)
             self.translator = None
 
-    def get_transparency_icon(self):
-        """Get standard transparency icon with safe fallbacks."""
-        # 1. Standard QGIS theme resource icon
+    def get_transparency_icon(self, is_remove=False):
+        """Get transparency icon (Add or Remove) with safe fallbacks."""
+        # 1. Custom Add / Remove SVG icon
+        svg_name = (
+            "transparencyRemove.svg" if is_remove else "transparencyAdd.svg"
+        )
+        svg_path = os.path.join(self.plugin_dir, svg_name)
+        if os.path.exists(svg_path):
+            icon = QIcon(svg_path)
+            if not icon.isNull():
+                return icon
+
+        # 2. Standard QGIS theme resource icon
         icon = QIcon(":/images/themes/default/propertyicons/transparency.svg")
         if not icon.isNull():
             return icon
 
-        # 2. QgsApplication theme icon lookup
+        # 3. QgsApplication theme icon lookup
         icon = QgsApplication.getThemeIcon("propertyicons/transparency.svg")
         if not icon.isNull():
             return icon
 
-        # 3. Bundled SVG icon
-        svg_path = os.path.join(self.plugin_dir, "transparency.svg")
-        if os.path.exists(svg_path):
-            return QIcon(svg_path)
+        # 4. Bundled fallback SVG icon
+        fallback_svg = os.path.join(self.plugin_dir, "transparency.svg")
+        if os.path.exists(fallback_svg):
+            return QIcon(fallback_svg)
 
-        # 4. Bundled PNG icon
+        # 5. Bundled PNG icon
         png_path = os.path.join(self.plugin_dir, "icon.png")
         if os.path.exists(png_path):
             return QIcon(png_path)
@@ -189,12 +199,14 @@ class AddTransparencySliderPlugin:
 
         if all_have_slider:
             action_text = self.tr("Remove transparency slider")
+            action_icon = self.get_transparency_icon(is_remove=True)
             handler = self.remove_transparency_slider
         else:
             action_text = self.tr("Add transparency slider")
+            action_icon = self.get_transparency_icon(is_remove=False)
             handler = self.add_transparency_slider
 
-        action = QAction(self.get_transparency_icon(), action_text, menu)
+        action = QAction(action_icon, action_text, menu)
         action.triggered.connect(handler)
 
         actions = menu.actions()
