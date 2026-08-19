@@ -3,7 +3,7 @@
 [![QGIS Version](https://img.shields.io/badge/QGIS-3.16%20--%204+-green.svg)](https://qgis.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-A lightweight and convenient QGIS plugin that dynamically adds a conditional **"Add / Remove transparency slider"** action directly into the Layer Tree context menu (immediately after **"Show Labels"** or at the end of the layer display section), allowing you to quickly manage the embedded transparency (opacity) slider for layers in the Layers panel with a single click.
+A lightweight and convenient QGIS plugin that dynamically adds a conditional **"Add / Remove transparency slider"** action directly into the Layer Tree context menu (immediately after **"Show Labels"** on vector layers, or after **"Show in Overview"** on raster/mesh layers), allowing you to quickly manage the embedded transparency (opacity) slider for layers in the Layers panel with a single click.
 
 ![Add Transparency Slider Screenshot](screenshot.PNG)
 
@@ -13,7 +13,7 @@ A lightweight and convenient QGIS plugin that dynamically adds a conditional **"
 
 - **Optimal Context Menu Placement**: 
   - Dynamically places the action immediately after **"Show Labels"** for vector layers.
-  - Places the action right before the first separator (end of the display/navigation block) for raster, mesh, and other layer types.
+  - Places the action immediately after **"Show in Overview"** (or before the first separator) for raster, mesh, and other layer types.
 - **Conditional Add / Remove**:
   - Automatically displays **"Add transparency slider"** when a layer does not have an opacity slider.
   - Automatically switches to **"Remove transparency slider"** when all selected layers already have a slider, allowing easy one-by-one removal.

@@ -208,23 +208,55 @@ class AddTransparencySliderPlugin:
 
         return False
 
+    def is_show_in_overview_action(self, action):
+        """Check if action is the standard 'Show in Overview' layer action."""
+        if not action or action.isSeparator():
+            return False
+
+        clean_text = action.text().replace("&", "").strip().lower()
+        if clean_text in ("show in overview", "show in overview map"):
+            return True
+
+        contexts = (
+            "QgsAppLayerTreeViewMenuProvider",
+            "QgisApp",
+            "QgsLayerTreeViewDefaultActions",
+        )
+        for ctx in contexts:
+            for source_text in ("Show in Overview", "Show in overview"):
+                translated = (
+                    QCoreApplication.translate(ctx, source_text)
+                    .replace("&", "")
+                    .strip()
+                    .lower()
+                )
+                if translated and clean_text == translated:
+                    return True
+
+        return False
+
     def find_insertion_index(self, actions):
         """Find the optimal position in context menu for transparency slider.
 
         Places action immediately after 'Show Labels' (vector layers),
-        or before the first separator (raster/mesh layers).
+        or after 'Show in Overview' (when 'Show Labels' is not present).
         """
         # 1. Insert immediately after 'Show Labels' if present
         for idx, action in enumerate(actions):
             if self.is_show_labels_action(action):
                 return idx + 1
 
-        # 2. Otherwise insert at the end of View block (before 1st separator)
+        # 2. Otherwise insert immediately after 'Show in Overview'
+        for idx, action in enumerate(actions):
+            if self.is_show_in_overview_action(action):
+                return idx + 1
+
+        # 3. Otherwise insert at the end of View block (before 1st separator)
         for idx, action in enumerate(actions):
             if action.isSeparator():
                 return idx
 
-        # 3. Fallback: before Rename Layer if found
+        # 4. Fallback: before Rename Layer if found
         contexts = (
             "QgsAppLayerTreeViewMenuProvider",
             "QgisApp",
@@ -244,7 +276,7 @@ class AddTransparencySliderPlugin:
                 if translated and clean_text == translated:
                     return idx
 
-        # 4. Final fallback: position 5 or end of menu
+        # 5. Final fallback: position 5 or end of menu
         return min(5, len(actions))
 
     def populate_context_menu(self, menu):
