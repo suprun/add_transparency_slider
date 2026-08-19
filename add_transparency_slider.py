@@ -180,13 +180,14 @@ class AddTransparencySliderPlugin:
         if not target_layers:
             return
 
-        # If any target layer has a slider, offer Remove; otherwise Add
-        has_slider = any(
+        # Show 'Remove' only if ALL target layers already have a slider;
+        # otherwise show 'Add' to add slider to layers missing it
+        all_have_slider = all(
             self.layer_has_transparency_slider(layer)
             for layer in target_layers
         )
 
-        if has_slider:
+        if all_have_slider:
             action_text = self.tr("Remove transparency slider")
             handler = self.remove_transparency_slider
         else:
@@ -221,11 +222,12 @@ class AddTransparencySliderPlugin:
             self.set_embedded_widgets(layer, widgets)
 
     def add_transparency_slider(self):
-        """Handler for 'Add transparency slider' action."""
+        """Add slider only to selected layers that do not already have one."""
         for layer in self.get_target_layers():
-            self.add_transparency_slider_to_layer(layer)
+            if not self.layer_has_transparency_slider(layer):
+                self.add_transparency_slider_to_layer(layer)
 
     def remove_transparency_slider(self):
-        """Handler for 'Remove transparency slider' action."""
+        """Remove one slider from each selected layer."""
         for layer in self.get_target_layers():
             self.remove_transparency_slider_from_layer(layer)
