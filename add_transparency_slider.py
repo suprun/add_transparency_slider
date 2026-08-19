@@ -9,44 +9,8 @@ to display the embedded transparency slider under layers.
 import os
 from qgis.PyQt.QtCore import QCoreApplication, QTranslator, QLocale, QSettings
 from qgis.PyQt.QtGui import QIcon
-from qgis.PyQt.QtWidgets import QAction, QMenu
+from qgis.PyQt.QtWidgets import QAction
 from qgis.core import QgsLayerTreeLayer, QgsApplication
-from qgis.gui import QgsLayerTreeViewMenuProvider
-
-
-class TransparencySliderMenuProvider(QgsLayerTreeViewMenuProvider):
-    """Context menu provider inserting 'Add transparency slider' at pos 6."""
-
-    def __init__(self, view, prev_provider, plugin):
-        super().__init__()
-        self.view = view
-        self.prev_provider = prev_provider
-        self.plugin = plugin
-
-    def createContextMenu(self):
-        if self.prev_provider:
-            menu = self.prev_provider.createContextMenu()
-        else:
-            menu = QMenu(self.view)
-
-        if not menu:
-            return None
-
-        # Check if layer(s) are selected or right-clicked
-        current_node = self.view.currentNode()
-        selected_layers = self.view.selectedLayers()
-
-        if isinstance(current_node, QgsLayerTreeLayer) or selected_layers:
-            action = self.plugin.create_add_transparency_action(menu)
-            if action:
-                actions = menu.actions()
-                # Insert at 6th position (0-based index 5)
-                if len(actions) >= 5:
-                    menu.insertAction(actions[5], action)
-                else:
-                    menu.addAction(action)
-
-        return menu
 
 
 class AddTransparencySliderPlugin:
@@ -56,8 +20,6 @@ class AddTransparencySliderPlugin:
         self.iface = iface
         self.plugin_dir = os.path.dirname(__file__)
         self.translator = None
-        self.menu_provider = None
-        self.original_provider = None
         self.view = None
 
     def tr(self, message):
@@ -90,24 +52,25 @@ class AddTransparencySliderPlugin:
                 QCoreApplication.installTranslator(self.translator)
 
     def initGui(self):
-        """Initialize GUI and context menu provider."""
+        """Initialize GUI and connect context menu signal."""
         self.initTranslator()
 
         if self.iface:
             self.view = self.iface.layerTreeView()
             if self.view:
-                self.original_provider = self.view.menuProvider()
-                self.menu_provider = TransparencySliderMenuProvider(
-                    self.view, self.original_provider, self
+                self.view.contextMenuAboutToShow.connect(
+                    self.populate_context_menu
                 )
-                self.view.setMenuProvider(self.menu_provider)
 
     def unload(self):
-        """Restore original menu provider and remove translators."""
-        if self.view and self.menu_provider:
-            current_provider = self.view.menuProvider()
-            if current_provider == self.menu_provider:
-                self.view.setMenuProvider(self.original_provider)
+        """Disconnect signals and remove translators."""
+        if self.view:
+            try:
+                self.view.contextMenuAboutToShow.disconnect(
+                    self.populate_context_menu
+                )
+            except (TypeError, RuntimeError):
+                pass
 
         if self.translator:
             QCoreApplication.removeTranslator(self.translator)
@@ -137,15 +100,28 @@ class AddTransparencySliderPlugin:
 
         return QIcon()
 
-    def create_add_transparency_action(self, parent=None):
-        """Create QAction for adding transparency slider."""
-        action = QAction(
-            self.get_transparency_icon(),
-            self.tr("Add transparency slider"),
-            parent,
-        )
-        action.triggered.connect(self.add_transparency_slider)
-        return action
+    def populate_context_menu(self, menu):
+        """Inject 'Add transparency slider' action at position 6."""
+        if not menu or not self.view:
+            return
+
+        current_node = self.view.currentNode()
+        selected_layers = self.view.selectedLayers()
+
+        if isinstance(current_node, QgsLayerTreeLayer) or selected_layers:
+            action = QAction(
+                self.get_transparency_icon(),
+                self.tr("Add transparency slider"),
+                menu,
+            )
+            action.triggered.connect(self.add_transparency_slider)
+
+            actions = menu.actions()
+            # 6th position is 0-based index 5
+            if len(actions) >= 5:
+                menu.insertAction(actions[5], action)
+            else:
+                menu.addAction(action)
 
     def add_transparency_slider_to_layer(self, layer):
         """Add transparency embedded widget to specified layer."""
