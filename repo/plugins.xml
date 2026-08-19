@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugins>
-  <pyqgis_plugin name="Add Transparency Slider" version="0.1.0.8" plugin_id="add_transparency_slider">
+  <pyqgis_plugin name="Add Transparency Slider" version="0.1.0.9" plugin_id="add_transparency_slider">
     <description>Adds an 'Add / Remove transparency slider' item to the layer tree context menu to quickly manage embedded opacity sliders beneath layers.</description>
     <about>Adds a convenient context menu action in the QGIS layer panel (as the 6th item) to conditionally add or remove the embedded transparency (opacity) slider for map layers with a single click.</about>
-    <version>0.1.0.8</version>
+    <version>0.1.0.9</version>
     <qgis_minimum_version>3.16</qgis_minimum_version>
     <qgis_maximum_version>4.99</qgis_maximum_version>
     <homepage>https://github.com/suprun/add_transparency_slider</homepage>
