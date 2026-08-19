@@ -3,16 +3,21 @@
 [![QGIS Version](https://img.shields.io/badge/QGIS-3.16%20--%204+-green.svg)](https://qgis.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-A lightweight and convenient QGIS plugin that adds an **"Add transparency slider"** action directly into the Layer Tree context menu (as the 6th item), allowing you to quickly enable the embedded transparency (opacity) slider for layers in the Layers panel with a single click.
+A lightweight and convenient QGIS plugin that adds a conditional **"Add / Remove transparency slider"** action directly into the Layer Tree context menu (as the 6th item), allowing you to quickly manage the embedded transparency (opacity) slider for layers in the Layers panel with a single click.
+
+![Add Transparency Slider Screenshot](screenshot.PNG)
 
 ---
 
 ## Features
 
-- **Context Menu Integration**: Adds the "Add transparency slider" action as the 6th item in the layer context menu in the Layers panel.
+- **Context Menu Integration**: Adds the action as the 6th item in the layer context menu in the Layers panel.
+- **Conditional Add / Remove**:
+  - Automatically displays **"Add transparency slider"** when a layer does not have an opacity slider.
+  - Automatically switches to **"Remove transparency slider"** when all selected layers already have a slider, allowing easy one-by-one removal.
+- **Smart Multi-Layer Selection**: When multiple layers are selected, adding a slider applies only to layers that do not already have one.
+- **Custom Context Menu Icons**: Uses dedicated `transparencyAdd.svg` and `transparencyRemove.svg` icons.
 - **Single-Click Workflow**: Instantly displays the interactive transparency slider right beneath layer names in the legend.
-- **Multi-Layer Support**: Select multiple layers and add transparency sliders to all of them simultaneously.
-- **Theme-Integrated Icon**: Uses the native QGIS transparency icon (`:/images/themes/default/propertyicons/transparency.svg`).
 - **Comprehensive Localization**: Fully translated into all major languages supported by the QGIS interface (over 50 languages).
 - **QGIS 3.16 – QGIS 4+ Compatibility**: Compatible with both Qt5 and Qt6 interfaces.
 
@@ -37,8 +42,10 @@ A lightweight and convenient QGIS plugin that adds an **"Add transparency slider
 
 1. Open your project in QGIS.
 2. In the **Layers** panel, right-click on any map layer (raster, vector, mesh, etc.).
-3. Click the 6th item in the context menu: **"Add transparency slider"**.
-4. The opacity slider will immediately appear underneath the layer in the Layers list, enabling real-time opacity adjustments without opening layer properties.
+3. Click the 6th item in the context menu:
+   - **"Add transparency slider"** — adds an interactive opacity slider directly under the layer in the Layers list.
+   - **"Remove transparency slider"** — removes one opacity slider from the layer.
+4. Adjust layer opacity in real time directly from the Layers panel without opening layer properties.
 
 ---
 
