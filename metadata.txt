@@ -4,9 +4,11 @@ qgisMinimumVersion=3.16
 qgisMaximumVersion=4.99
 description=Adds an 'Add / Remove transparency slider' item to the layer tree context menu (after 'Show Labels' or 'Show in Overview') to manage opacity sliders.
 about=Adds a convenient context menu action in the QGIS layer panel (dynamically placed after 'Show Labels' or 'Show in Overview') to conditionally add or remove the embedded transparency (opacity) slider for map layers with a single click.
-version=0.1.0.11
+version=1.0.0.0
 author=suprun
 email=suprun.serhiy+qgis@gmail.com
+changelog=1.0.0.0:
+    - Updated icons to match native QGIS styling.
 repository=https://github.com/suprun/add_transparency_slider
 tracker=https://github.com/suprun/add_transparency_slider/issues
 tags=layer,transparency,opacity,slider,legend,embedded widget,legend widget
