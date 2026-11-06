@@ -1,9 +1,17 @@
 [general]
 name=Add Transparency Slider
+name[uk]=Додати регулятор прозорості
 qgisMinimumVersion=3.16
 qgisMaximumVersion=4.99
 description=Adds an 'Add / Remove transparency slider' item to the layer tree context menu (after 'Show Labels' or 'Show in Overview') to manage opacity sliders.
+description[uk]=Додає пункт «Додати / видалити повзунок прозорості» до контекстного меню дерева шарів (після «Показувати підписи» або «Показувати на оглядовій карті») для керування повзунками непрозорості.
 about=Adds a convenient context menu action in the QGIS layer panel (dynamically placed after 'Show Labels' or 'Show in Overview') to conditionally add or remove the embedded transparency (opacity) slider for map layers with a single click.
+about[uk]=Додає зручну дію до контекстного меню панелі шарів QGIS (після «Показувати підписи» або «Показувати на оглядовій карті»), яка дає змогу одним клацанням додати або видалити вбудований повзунок прозорості (непрозорості) для шарів карти залежно від його наявності.
+about[pl]=Dodaje wygodną akcję do menu kontekstowego panelu warstw QGIS (za opcją „Pokaż etykiety” lub „Pokaż na mapie przeglądowej”), która pozwala jednym kliknięciem dodać lub usunąć wbudowany suwak przezroczystości (krycia) warstw mapy, zależnie od tego, czy jest już dostępny.
+about[de]=Fügt dem Kontextmenü der QGIS-Layerübersicht eine praktische Aktion hinzu (nach „Beschriftungen anzeigen” oder „In Übersicht anzeigen”), mit der sich der eingebettete Transparenzregler (Deckkraftregler) für Kartenlayer je nach Vorhandensein mit einem Klick hinzufügen oder entfernen lässt.
+about[fr]=Ajoute une action pratique au menu contextuel du panneau des couches de QGIS (après « Afficher les étiquettes » ou « Afficher dans la vue d’ensemble »), permettant d’ajouter ou de supprimer en un clic le curseur intégré de transparence (opacité) des couches cartographiques, selon sa présence.
+about[es]=Añade una acción práctica al menú contextual del panel de capas de QGIS (después de «Mostrar etiquetas» o «Mostrar en la vista general»), que permite añadir o eliminar con un clic el control deslizante integrado de transparencia (opacidad) de las capas del mapa, según esté presente o no.
+about[it]=Aggiunge una pratica azione al menu contestuale del pannello dei layer di QGIS (dopo «Mostra etichette» o «Mostra nella panoramica»), che consente di aggiungere o rimuovere con un clic il cursore integrato della trasparenza (opacità) dei layer della mappa, a seconda che sia già presente o meno.
 version=1.0.0.0
 author=suprun
 email=suprun.serhiy+qgis@gmail.com

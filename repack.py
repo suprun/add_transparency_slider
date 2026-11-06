@@ -26,6 +26,7 @@ DEFAULT_ZIP = os.path.join(REPO_DIR, f"{PLUGIN_NAME}.zip")
 IGNORED_DIRS = {
     ".git",
     "repo",
+    "scripts",
     "__pycache__",
     ".venv",
     "venv",

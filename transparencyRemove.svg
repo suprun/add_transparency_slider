@@ -39,9 +39,9 @@
      id="namedview30"
      showgrid="false"
      inkscape:zoom="5.2149125"
-     inkscape:cx="5.8933728"
-     inkscape:cy="51.032505"
-     inkscape:window-x="1912"
+     inkscape:cx="37.533405"
+     inkscape:cy="28.980361"
+     inkscape:window-x="-8"
      inkscape:window-y="22"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg28" />
@@ -119,31 +119,23 @@
      id="path17-8"
      inkscape:connector-curvature="0"
      style="vector-effect:non-scaling-stroke;fill:#ececec;stroke:#204a88;stroke-width:0.49080199;stroke-opacity:0.97254902" />
-  <g
-     style="enable-background:new"
-     transform="matrix(2.6520285,0,0,2.6520285,0.34307487,0.35516376)"
-     id="g886">
-    <rect
-       style="fill:#f05353"
-       height="10.000001"
-       rx="2.0114901"
-       width="9.999999"
-       x="14"
-       y="14"
-       id="rect878" />
-    <g
-       style="fill:#fcffff;fill-rule:evenodd"
-       id="g884">
-      <path
-         style="stroke:#e6e6e6;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"
-         d="m 16,19 h 6"
-         id="path880"
-         inkscape:connector-curvature="0" />
-      <path
-         style="opacity:0.3"
-         d="m 15,19 h 8 c 0,0 0,0 0,-2 0,-2 -0.5,-2 -4,-2 -3.5,0 -4,0 -4,2 z"
-         id="path882"
-         inkscape:connector-curvature="0" />
-    </g>
-  </g>
+  <rect
+     style="fill:#f05050;stroke-width:4.03600264"
+     height="20.794296"
+     rx="3.1897435"
+     ry="3.5737846"
+     width="23.500576"
+     x="40.014137"
+     y="39.097736"
+     id="rect4" />
+  <path
+     inkscape:connector-curvature="0"
+     style="opacity:0.3;fill:#fcffff;fill-rule:evenodd;stroke-width:3.9997859"
+     d="m 43.533878,49.382843 h 16.927724 c 0,0 0,0 0,-2.835278 0,-2.835286 -1.057976,-2.835286 -8.463864,-2.835286 -7.40588,0 -8.46386,0 -8.46386,2.835286 z"
+     id="path6" />
+  <path
+     inkscape:connector-curvature="0"
+     style="fill:none;stroke:#ffffff;stroke-width:4.47624207;stroke-linecap:round"
+     d="M 45.771652,49.382616 H 58.22383"
+     id="path8" />
 </svg>
