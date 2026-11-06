@@ -45,7 +45,6 @@ IGNORED_PATTERNS = {
     "*.pyc",
     "*.pyo",
     "*.pyd",
-    "*.qm",
     "transparency.svg",
     "*.log",
     "*.env",
@@ -169,8 +168,8 @@ def increment_build_number():
         with open(PLUGINS_XML, "r", encoding="utf-8") as f:
             xml_content = f.read()
         xml_content = re.sub(
-            r'version="[^"]*"',
-            f'version="{new_version}"',
+            r'(<pyqgis_plugin\b[^>]*\bversion=")[^"]*(")',
+            rf'\g<1>{new_version}\g<2>',
             xml_content,
             count=1,
         )

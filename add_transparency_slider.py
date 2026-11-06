@@ -9,7 +9,10 @@ to manage embedded transparency sliders under layers.
 import os
 from qgis.PyQt.QtCore import QCoreApplication, QTranslator, QLocale, QSettings
 from qgis.PyQt.QtGui import QIcon
-from qgis.PyQt.QtWidgets import QAction
+try:
+    from qgis.PyQt.QtGui import QAction
+except ImportError:
+    from qgis.PyQt.QtWidgets import QAction
 from qgis.core import QgsLayerTreeLayer, QgsApplication
 
 
